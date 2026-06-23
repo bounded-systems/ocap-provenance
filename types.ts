@@ -8,6 +8,7 @@
  * its own repo (github.com/bounded-systems/ocap-provenance).
  */
 
+/** The CapabilityProvenance predicate type URI per the in-toto/SLSA spec. */
 export const PREDICATE_TYPE =
   "https://github.com/bounded-systems/ocap-provenance/predicate/CapabilityProvenance/v0.1" as const;
 

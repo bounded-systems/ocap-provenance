@@ -29,8 +29,11 @@ export const SLSA_PROVENANCE_V1 = "https://slsa.dev/provenance/v1" as const;
 
 /** SLSA buildType URIs for each OCAP level: image (base), launch (spawned), write (side-effect). */
 export const BUILD_TYPES = {
+  /** Base image level. */
   image: "https://claude.ai/buildTypes/ocap-image/v1",
+  /** Spawned launch level. */
   launch: "https://claude.ai/buildTypes/ocap-launch/v1",
+  /** Side-effect write level. */
   write: "https://claude.ai/buildTypes/ocap-write/v1",
 } as const;
 
