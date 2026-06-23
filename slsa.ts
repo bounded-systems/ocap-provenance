@@ -15,21 +15,28 @@ import type {
   ChainLink,
   Material,
 } from "./types";
-import { IN_TOTO_STATEMENT_TYPE } from "./types";
+import { IN_TOTO_STATEMENT_TYPE, PREDICATE_TYPE } from "./types";
+
+// Re-export types from types.ts used in this module's public API
+export type { CapabilityProvenanceStatement, CapabilityProvenance, ChainLevel, DigestSet, ResourceDigest, Capabilities, ChainLink, Material, Door };
+export { IN_TOTO_STATEMENT_TYPE, PREDICATE_TYPE };
 
 // ── SLSA Provenance v1 types ────────────────────────────────────────────────
 
+/** The SLSA Provenance v1 predicate type URI. */
 export const SLSA_PROVENANCE_V1 = "https://slsa.dev/provenance/v1" as const;
 
-/** SLSA buildType URIs for each OCAP level */
+/** SLSA buildType URIs for each OCAP level: image (base), launch (spawned), write (side-effect). */
 export const BUILD_TYPES = {
   image: "https://claude.ai/buildTypes/ocap-image/v1",
   launch: "https://claude.ai/buildTypes/ocap-launch/v1",
   write: "https://claude.ai/buildTypes/ocap-write/v1",
 } as const;
 
+/** Algorithm → hex digest mapping for SLSA provenance. */
 export type SLSADigestSet = Record<string, string>;
 
+/** A resource in SLSA provenance: uri, digest, name, optional metadata. */
 export type SLSAResourceDescriptor = {
   uri?: string;
   digest?: SLSADigestSet;
@@ -39,18 +46,21 @@ export type SLSAResourceDescriptor = {
   content?: string; // base64
 };
 
+/** A builder in SLSA provenance: identified by URI, optional version and dependencies. */
 export type SLSABuilder = {
   id: string;
   version?: Record<string, string>;
   builderDependencies?: SLSAResourceDescriptor[];
 };
 
+/** Build execution metadata: invocation ID, start time, and finish time. */
 export type SLSAMetadata = {
   invocationId?: string;
   startedOn?: string;
   finishedOn?: string;
 };
 
+/** SLSA build definition: build type, external/internal parameters, resolved dependencies. */
 export type SLSABuildDefinition = {
   buildType: string;
   externalParameters: Record<string, unknown>;
@@ -58,6 +68,7 @@ export type SLSABuildDefinition = {
   resolvedDependencies?: SLSAResourceDescriptor[];
 };
 
+/** SLSA run details: builder, metadata, byproducts, and optional OCAP chain links. */
 export type SLSARunDetails = {
   builder: SLSABuilder;
   metadata?: SLSAMetadata;
@@ -66,11 +77,13 @@ export type SLSARunDetails = {
   ocap_links?: ChainLink[];
 };
 
+/** SLSA Provenance v1 predicate: build definition and run details. */
 export type SLSAProvenanceV1 = {
   buildDefinition: SLSABuildDefinition;
   runDetails: SLSARunDetails;
 };
 
+/** An in-toto Statement carrying a SLSA Provenance v1 predicate. */
 export type SLSAStatement = {
   _type: typeof IN_TOTO_STATEMENT_TYPE;
   subject: SLSAResourceDescriptor[];
