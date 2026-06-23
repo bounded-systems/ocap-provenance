@@ -1,7 +1,41 @@
 # ocap-provenance — SLSA Provenance v1 with OCAP extensions
 
 **Format:** [SLSA Provenance v1](https://slsa.dev/spec/v1.0/provenance) with OCAP
-capability extensions. Uses the standard `https://slsa.dev/provenance/v1` predicate
+capability extensions.
+
+## Quick start
+
+```ts
+import { statement } from "@bounded-systems/ocap-provenance";
+import { toSLSA } from "@bounded-systems/ocap-provenance/slsa";
+
+// Build a capability provenance statement
+const stmt = statement(
+  [{ name: "my-artifact", digest: { sha256: "abc123" } }],
+  {
+    level: "write",
+    producer: { kind: "keeperd", id: "keeperd@sha256:deadbeef" },
+    capabilities: {
+      doors: [{ name: "git-write", socket: "/run/doors/git-write" }],
+      denied: [],
+    },
+  },
+);
+
+// Convert to SLSA Provenance v1 for cosign / sigstore tooling
+const slsa = toSLSA(stmt);
+console.log(slsa.predicateType); // "https://slsa.dev/provenance/v1"
+```
+
+```ts
+import { buildAttestation, verifyAttestation } from "@bounded-systems/ocap-provenance/attestation";
+
+// Sign a statement (inject your own signer — runtime-agnostic)
+const signed = buildAttestation(stmt, (canonical) => mySign(canonical));
+
+// Verify
+const ok = verifyAttestation(signed, (canonical, sig) => myVerify(canonical, sig));
+``` Uses the standard `https://slsa.dev/provenance/v1` predicate
 type for tooling compatibility, with OCAP-specific fields in `externalParameters`
 and the `ocap_links` extension.
 
