@@ -12,7 +12,8 @@
   },
   "exports": {
     ".": "./types.ts",
-    "./slsa": "./slsa.ts"
+    "./slsa": "./slsa.ts",
+    "./attestation": "./attestation.ts"
   },
   "bounded": {
     "tagline": "Capability-use provenance: a schema + SLSA mapping binding each privileged effect to a signed owner + auditable chain",

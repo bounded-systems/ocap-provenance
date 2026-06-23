@@ -47,10 +47,21 @@ export type SignedAttestation = {
   readonly keyId?: string;
 };
 
-/** Sign the canonical statement bytes, returning a base64 signature. */
+/**
+ * Sign the canonical statement bytes, returning a base64 signature.
+ *
+ * @param canonicalStatement - The canonical statement bytes to sign.
+ * @returns The base64-encoded signature.
+ */
 export type Signer = (canonicalStatement: string) => string;
 
-/** Verify a base64 signature over the canonical statement bytes. */
+/**
+ * Verify a base64 signature over the canonical statement bytes.
+ *
+ * @param canonicalStatement - The canonical statement bytes.
+ * @param signatureBase64 - The base64-encoded signature.
+ * @returns True if the signature is valid.
+ */
 export type Verifier = (canonicalStatement: string, signatureBase64: string) => boolean;
 
 /**
