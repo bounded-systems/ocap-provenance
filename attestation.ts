@@ -26,6 +26,7 @@ function sortDeep(value: unknown): unknown {
   return out;
 }
 
+/** Canonical JSON encoding: recursively sorts object keys, then stringifies. */
 export function canonicalJson(value: unknown): string {
   return JSON.stringify(sortDeep(value));
 }
