@@ -1,0 +1,10 @@
+{
+  "name": {
+    "type": "name",
+    "value": "Ocap Provenance"
+  },
+  "description": {
+    "type": "meta",
+    "value": "Capability-use provenance — a schema + SLSA mapping binding each privileged effect to a signed owner and an auditable chain."
+  }
+}
