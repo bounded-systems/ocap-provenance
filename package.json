@@ -6,6 +6,19 @@
   "description": "Capability-use provenance — a schema + SLSA mapping binding each privileged effect to a signed owner and an auditable chain.",
   "license": "PolyForm-Noncommercial-1.0.0",
   "author": "Robert DeLanghe (https://github.com/bdelanghe)",
-  "repository": { "type": "git", "url": "git+https://github.com/bounded-systems/ocap-provenance.git" },
-  "exports": { ".": "./types.ts", "./slsa": "./slsa.ts" }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bounded-systems/ocap-provenance.git"
+  },
+  "exports": {
+    ".": "./types.ts",
+    "./slsa": "./slsa.ts"
+  },
+  "bounded": {
+    "tagline": "Capability-use provenance: a schema + SLSA mapping binding each privileged effect to a signed owner + auditable chain",
+    "kind": "room",
+    "facet": "noun",
+    "role": "contract",
+    "domain": "provenance"
+  }
 }
