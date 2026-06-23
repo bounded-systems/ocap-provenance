@@ -1,6 +1,6 @@
 {
   "name": "@bounded-systems/ocap-provenance",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "license": "PolyForm-Noncommercial-1.0.0",
   "exports": {
     ".": "./types.ts",
