@@ -1,12 +1,13 @@
 {
   "name": "@bounded-systems/ocap-provenance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "PolyForm-Noncommercial-1.0.0",
   "exports": {
     ".": "./types.ts",
-    "./slsa": "./slsa.ts"
+    "./slsa": "./slsa.ts",
+    "./attestation": "./attestation.ts"
   },
   "publish": {
-    "include": ["types.ts", "slsa.ts", "capability-provenance.v0.1.schema.json", "*.md", "jsr.json", "LICENSE"]
+    "include": ["types.ts", "slsa.ts", "attestation.ts", "capability-provenance.v0.1.schema.json", "*.md", "jsr.json", "LICENSE"]
   }
 }
