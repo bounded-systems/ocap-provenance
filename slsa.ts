@@ -15,6 +15,7 @@ import type {
   Capabilities,
   ChainLink,
   Material,
+  Door,
 } from "./types";
 import { IN_TOTO_STATEMENT_TYPE, PREDICATE_TYPE } from "./types";
 
