@@ -19,10 +19,6 @@ import type {
 } from "./types";
 import { IN_TOTO_STATEMENT_TYPE, PREDICATE_TYPE } from "./types";
 
-// Re-export types from types.ts used in this module's public API
-export type { CapabilityProvenanceStatement, CapabilityProvenance, ChainLevel, DigestSet, ResourceDigest, Capabilities, ChainLink, Material, Door };
-export { IN_TOTO_STATEMENT_TYPE, PREDICATE_TYPE };
-
 // ── SLSA Provenance v1 types ────────────────────────────────────────────────
 
 /** The SLSA Provenance v1 predicate type URI. */

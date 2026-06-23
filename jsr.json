@@ -1,6 +1,6 @@
 {
   "name": "@bounded-systems/ocap-provenance",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "SLSA Provenance v1 types and converters with OCAP capability extensions for capability-secured agent provenance attestations.",
   "license": "PolyForm-Noncommercial-1.0.0",
   "exports": {
