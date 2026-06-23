@@ -5,6 +5,6 @@
   },
   "description": {
     "type": "meta",
-    "value": "Capability-use provenance — a schema + SLSA mapping binding each privileged effect to a signed owner and an auditable chain."
+    "value": "Format: SLSA Provenance v1 with OCAP capability extensions.  Uses the standard https://slsa. dev/provenance/v1 predicate type for tooling compatibility, with OCAP-specific fields in externalParameters and the ocap_links extension."
   }
 }
