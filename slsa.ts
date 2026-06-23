@@ -1,4 +1,5 @@
 /**
+ * @module
  * slsa.ts — Convert CapabilityProvenance to SLSA Provenance v1 format.
  *
  * This provides interoperability with SLSA tooling while preserving OCAP semantics.
@@ -34,60 +35,85 @@ export const BUILD_TYPES = {
 } as const;
 
 /** Algorithm → hex digest mapping for SLSA provenance. */
-export type SLSADigestSet = Record<string, string>;
+export type SLSADigestSet = Record<string, string>; // Maps algorithm names to hex digest strings
 
 /** A resource in SLSA provenance: uri, digest, name, optional metadata. */
 export type SLSAResourceDescriptor = {
+  /** URI identifying the resource. */
   uri?: string;
+  /** Algorithm → hex digest mapping. */
   digest?: SLSADigestSet;
+  /** Human-readable name of the resource. */
   name?: string;
+  /** Download location of the resource. */
   downloadLocation?: string;
+  /** MIME type of the resource. */
   mediaType?: string;
-  content?: string; // base64
+  /** Base64-encoded resource content. */
+  content?: string;
 };
 
 /** A builder in SLSA provenance: identified by URI, optional version and dependencies. */
 export type SLSABuilder = {
+  /** Builder identifier (URI). */
   id: string;
+  /** Builder version information. */
   version?: Record<string, string>;
+  /** Builder dependencies. */
   builderDependencies?: SLSAResourceDescriptor[];
 };
 
 /** Build execution metadata: invocation ID, start time, and finish time. */
 export type SLSAMetadata = {
+  /** Unique invocation identifier. */
   invocationId?: string;
+  /** ISO 8601 timestamp when execution started. */
   startedOn?: string;
+  /** ISO 8601 timestamp when execution finished. */
   finishedOn?: string;
 };
 
 /** SLSA build definition: build type, external/internal parameters, resolved dependencies. */
 export type SLSABuildDefinition = {
+  /** Build type URI. */
   buildType: string;
+  /** External build parameters (visible to the builder). */
   externalParameters: Record<string, unknown>;
+  /** Internal build parameters (not visible externally). */
   internalParameters?: Record<string, unknown>;
+  /** Resolved dependency resources. */
   resolvedDependencies?: SLSAResourceDescriptor[];
 };
 
 /** SLSA run details: builder, metadata, byproducts, and optional OCAP chain links. */
 export type SLSARunDetails = {
+  /** The builder that executed this build. */
   builder: SLSABuilder;
+  /** Build execution metadata. */
   metadata?: SLSAMetadata;
+  /** Build byproducts (artifacts generated during execution). */
   byproducts?: SLSAResourceDescriptor[];
-  // Extension field for OCAP chain links
+  /** OCAP chain links (extension field for capability provenance). */
   ocap_links?: ChainLink[];
 };
 
 /** SLSA Provenance v1 predicate: build definition and run details. */
 export type SLSAProvenanceV1 = {
+  /** The build definition (type, parameters, dependencies). */
   buildDefinition: SLSABuildDefinition;
+  /** The run details (builder, metadata, byproducts). */
   runDetails: SLSARunDetails;
 };
 
 /** An in-toto Statement carrying a SLSA Provenance v1 predicate. */
 export type SLSAStatement = {
+  /** The in-toto statement type URI. */
   _type: typeof IN_TOTO_STATEMENT_TYPE;
+  /** The subject(s) of this statement. */
   subject: SLSAResourceDescriptor[];
+  /** The SLSA Provenance v1 predicate type URI. */
   predicateType: typeof SLSA_PROVENANCE_V1;
+  /** The SLSA provenance predicate. */
   predicate: SLSAProvenanceV1;
 };
 

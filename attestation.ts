@@ -1,4 +1,5 @@
 /**
+ * @module
  * Signed-attestation primitive for the capability chain (L2 launch ↔ L3 write).
  *
  * A `SignedAttestation` is a statement plus a detached signature over its
@@ -33,8 +34,11 @@ export function canonicalJson(value: unknown): string {
 
 /** A statement + a base64 signature over `canonicalJson(statement)`. */
 export type SignedAttestation = {
+  /** The signed statement. */
   readonly statement: unknown;
+  /** Base64-encoded signature over the canonical JSON statement. */
   readonly signature: string;
+  /** Optional key identifier used for signing. */
   readonly keyId?: string;
 };
 
