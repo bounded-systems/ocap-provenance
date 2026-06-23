@@ -117,7 +117,13 @@ export type CapabilityProvenanceStatement = {
   predicate: CapabilityProvenance;
 };
 
-/** Build the envelope around a predicate + its subject(s). */
+/**
+ * Build the envelope around a predicate + its subject(s).
+ *
+ * @param subject - The subject(s) of the statement.
+ * @param predicate - The capability provenance predicate.
+ * @returns The in-toto Statement envelope.
+ */
 export function statement(
   subject: ResourceDigest[],
   predicate: CapabilityProvenance,

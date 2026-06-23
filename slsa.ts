@@ -160,6 +160,9 @@ function toSubject(subject: ResourceDigest[]): SLSAResourceDescriptor[] {
  * - `buildDefinition.externalParameters.capabilities` — the OCAP surface
  * - `buildDefinition.externalParameters.image` — the box image (if present)
  * - `runDetails.ocap_links` — chain back-references (extension field)
+ *
+ * @param stmt - The capability provenance statement to convert.
+ * @returns The SLSA Provenance v1 statement.
  */
 export function toSLSA(stmt: CapabilityProvenanceStatement): SLSAStatement {
   const pred = stmt.predicate;
@@ -204,6 +207,9 @@ export function toSLSA(stmt: CapabilityProvenanceStatement): SLSAStatement {
  *
  * This is the inverse of toSLSA() — useful for verifiers that receive
  * SLSA-formatted attestations but want to work with the OCAP types.
+ *
+ * @param slsa - The SLSA statement to convert.
+ * @returns The capability provenance statement.
  */
 export function fromSLSA(slsa: SLSAStatement): CapabilityProvenanceStatement {
   const pred = slsa.predicate;

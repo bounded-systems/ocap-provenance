@@ -27,7 +27,12 @@ function sortDeep(value: unknown): unknown {
   return out;
 }
 
-/** Canonical JSON encoding: recursively sorts object keys, then stringifies. */
+/**
+ * Canonical JSON encoding: recursively sorts object keys, then stringifies.
+ *
+ * @param value - The value to serialize.
+ * @returns The canonical JSON string.
+ */
 export function canonicalJson(value: unknown): string {
   return JSON.stringify(sortDeep(value));
 }
@@ -48,7 +53,12 @@ export type Signer = (canonicalStatement: string) => string;
 /** Verify a base64 signature over the canonical statement bytes. */
 export type Verifier = (canonicalStatement: string, signatureBase64: string) => boolean;
 
-/** True iff `value` is shaped like a {@link SignedAttestation}. */
+/**
+ * True iff `value` is shaped like a {@link SignedAttestation}.
+ *
+ * @param value - The value to test.
+ * @returns True if the value is a signed attestation.
+ */
 export function isSignedAttestation(value: unknown): value is SignedAttestation {
   return (
     typeof value === "object" &&
@@ -59,7 +69,14 @@ export function isSignedAttestation(value: unknown): value is SignedAttestation 
   );
 }
 
-/** Build a signed attestation: sign `canonicalJson(statement)` with `sign`. */
+/**
+ * Build a signed attestation: sign `canonicalJson(statement)` with `sign`.
+ *
+ * @param statement - The statement to sign.
+ * @param sign - The signing function.
+ * @param keyId - Optional key identifier.
+ * @returns The signed attestation.
+ */
 export function buildAttestation(
   statement: unknown,
   sign: Signer,
@@ -73,6 +90,10 @@ export function buildAttestation(
  * Verify a signed attestation under `verify`. Returns false on malformed input or
  * a signature that does not verify. Subject/level/chain-link policy is the
  * caller's (this only proves the statement was signed by the trusted key).
+ *
+ * @param att - The attestation to verify.
+ * @param verify - The verification function.
+ * @returns True if the attestation is valid.
  */
 export function verifyAttestation(att: unknown, verify: Verifier): boolean {
   if (!isSignedAttestation(att)) return false;
