@@ -1,0 +1,29 @@
+package.json
+  s_8bfe0e8de6557c::t_9b105944a41aa9 24-27
+.github/workflows/ci.yml
+  s_8bfe0e8de6557c::t_457e89525ec72e 1-35
+extractability.test.ts
+  s_8bfe0e8de6557c::t_b86f78a7a3fc5b 1-20
+.gitignore
+  s_8bfe0e8de6557c::t_04fb6ce168ac71 1-2
+.npmrc
+  s_8bfe0e8de6557c::t_984f910c7886ec 1
+bun.lock
+  s_8bfe0e8de6557c::t_396894a347dc7a 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "265812da61759ede74229442ad73032e877de1d4",
+  "prompts": {},
+  "sessions": {
+    "s_8bfe0e8de6557c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "159cecef-b114-4932-b219-6b198cbf9abd",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Robert DeLanghe <1240090+bdelanghe@users.noreply.github.com>"
+    }
+  }
+}
