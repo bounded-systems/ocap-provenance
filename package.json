@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Capability-use provenance — a schema + SLSA mapping binding each privileged effect to a signed owner and an auditable chain.",
-  "license": "PolyForm-Noncommercial-1.0.0",
+  "license": "MIT",
   "author": "Robert DeLanghe (https://github.com/bdelanghe)",
   "repository": {
     "type": "git",
